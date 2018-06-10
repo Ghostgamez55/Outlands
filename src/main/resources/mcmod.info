@@ -1,0 +1,16 @@
+[
+{
+  "modid": "olm",
+  "name": "Outland Mod Xcisso",
+  "description": "A test version of the outland mod for Xcisso",
+  "version": "1.0a",
+  "mcversion": "${mcversion}",
+  "url": "http://www.planetminecraft.com/member/xcisso/",
+  "updateUrl": "",
+  "authorList": ["Xcisso"],
+  "credits": "Xcisso",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

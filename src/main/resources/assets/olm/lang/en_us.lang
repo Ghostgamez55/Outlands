@@ -1,0 +1,21 @@
+//Items
+
+item.testitem.name=Test Item
+item.deerhide.name=Deer Hide
+item.cyclopseye.name=Cyclops Eye
+item.cooked_duck_meat.name=Cooked Duck Meat
+item.raw_duck_meat.name=Raw Duck Meat
+item.duckfeather.name=Duck Feather
+item.gold_coin.name=Gold Coin
+
+//Tools
+
+//Blocks
+
+//Armor
+
+item.vikinghelmet.name=Viking Helmet
+
+//Tabs
+
+itemGroup.outland.tab1=Outland

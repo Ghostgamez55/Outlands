@@ -1,6 +1,6 @@
 {
    "parent": "item/generated",
    "textures": {
-       "layer0": "olm:items/cyclopseye"
+       "layer0": "olm:items/temp_viking_helmet"
    }
 }

@@ -12,6 +12,8 @@ item.gold_coin.name=Gold Coin
 
 //Blocks
 
+tile.testblock.name=Test Block
+
 //Armor
 
 item.vikinghelmet.name=Viking Helmet

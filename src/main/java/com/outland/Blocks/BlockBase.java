@@ -3,6 +3,7 @@ package com.outland.Blocks;
 import java.util.ArrayList;
 
 import com.outland.Items.ItemBase;
+import com.outland.main.OutlandMod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,18 +29,22 @@ public class BlockBase extends Block
 	
 
 	/**
-	 * @param _name Unlocalized name
+	 * @param _name Unlocalized and Registry name. The model file needs to have the same name as this.
 	 * @param _blockMat The blockaterial of this block.
 	 */
 	public BlockBase(String _name, Material _blockMat) 
 	{
 		super(_blockMat);
-		
+
 		this.setUnlocalizedName(_name);
+		this.setRegistryName(_name);
+		this.setCreativeTab(OutlandMod.modTab);
 		
 		blocksToRegister.add(this);
 		
-		ItemBase.itemsToRegister.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+		Item tempItemBlock = new ItemBlock(this).setRegistryName(this.getRegistryName());
+		
+		ItemBase.itemsToRegister.add(tempItemBlock);
 		
 	}
 

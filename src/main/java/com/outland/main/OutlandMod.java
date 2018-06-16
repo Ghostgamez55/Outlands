@@ -1,11 +1,15 @@
 package com.outland.main;
 
+import com.outland.Blocks.BlockBase;
+import com.outland.Blocks.BlockTestBlock;
 import com.outland.Items.ItemArmorBase;
 import com.outland.Items.ItemBase;
 import com.outland.handlers.GuiHandler;
 import com.outland.handlers.KeyHandler;
 import com.outland.proxy.CommonProxy;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -144,9 +148,22 @@ public class OutlandMod
 		public static Item itemRawDuckMeat;
 		public static Item itemGoldCoin;
 		
+		
+		//Armor pieces
 		public static Item itemVikingHelmet = new ItemArmorBase(ArmorMaterial.IRON, 0, EntityEquipmentSlot.HEAD)
 				.setUnlocalizedName("vikinghelmet")
 				.setRegistryName("vikinghelmet");
+		
+		/*
+		 * BLOCKS
+		 * 
+		 */
+		
+		//	This is an example block. TODO: we need to remove this before release..
+		public static Block testBlock_01 = new BlockBase("testblock", Material.CLOTH);
+		
+		//	And another block example with a custom block class.
+		public static Block testBlock_02 = new BlockTestBlock("testblockinterract", Material.CLAY);
 	 
 	 /**
 	 * 	This method creates all the items.

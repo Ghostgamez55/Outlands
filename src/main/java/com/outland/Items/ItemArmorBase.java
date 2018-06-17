@@ -24,6 +24,7 @@ public class ItemArmorBase extends ItemArmor
 		ItemBase.itemsToRegister.add(this);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase _entLiving, ItemStack _is, EntityEquipmentSlot _slot, ModelBiped _default)
 	{

@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -32,6 +33,7 @@ public class BlockTestBlock extends BlockBase
     {
 		//	When the player right clicks, it launches him into the air.
 		_playerIn.addVelocity(0, 1.5d, 0);
+		_playerIn.fallDistance = 0;
 		return true;
     }
 	

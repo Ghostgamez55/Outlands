@@ -20,6 +20,10 @@ import net.minecraft.util.math.Vec3d;
  * @author Xcisso
  *	This class manages the 3d rendering part of the talent screen.
  *	Please notice me if you want to make any changes.
+ *	
+ *	TODO:
+ *	NOTE: 	I'm setting this 3d renderer on pause, and i'm creating a 2d gui for the talent screen.
+ *			This is because i simply dont have enough time to do this besides work at the moment.
  *
  */
 public class RenderTalentScreen 
@@ -97,6 +101,7 @@ public class RenderTalentScreen
 		double X = 0;
 		double Y = 0;
 		double Z = 0;
+		
 		
 		Vector3 size = new Vector3();
 		

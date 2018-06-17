@@ -23,6 +23,9 @@ public class KeyHandler
 	public static String openGui_01_name = "key.opengui01";
 	
 	
+	public static KeyBinding sendPacketTest;
+	public static String sendPacketTest_name = "key.testpacket";
+	
 	public KeyHandler()
 	{
 		RegisterKeys();
@@ -36,6 +39,9 @@ public class KeyHandler
 	{
 		openGui_01 = new KeyBinding(openGui_01_name, Keyboard.KEY_K, keyBindCategory);
 		ClientRegistry.registerKeyBinding(openGui_01);
+		
+		sendPacketTest = new KeyBinding(sendPacketTest_name, Keyboard.KEY_J, keyBindCategory);
+		ClientRegistry.registerKeyBinding(sendPacketTest);
 	}
 
 

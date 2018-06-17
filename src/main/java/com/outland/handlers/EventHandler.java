@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.outland.main.OutlandMod;
+import com.outland.packets.PacketHelloWorld;
 import com.outland.renderers.RenderTalentScreen;
 
 import net.minecraft.client.Minecraft;
@@ -39,11 +40,17 @@ public class EventHandler
 			OutlandMod.mc.getRenderManager().setPlayerViewY(0);
 			
 			//	Open the gui.
-			//	It keeps thrack of everything, and also creates the 3d rendered part of it.
+			//	It keeps track of everything, and also creates the 3d rendered part of it.
 			OutlandMod.mc.player.openGui(OutlandMod.instance, 0, OutlandMod.mc.world, 
 					(int)OutlandMod.mc.player.posX, 
 					(int)OutlandMod.mc.player.posY, 
 					(int)OutlandMod.mc.player.posZ);
+		}
+		
+		if(KeyHandler.sendPacketTest.isPressed())
+		{
+			System.out.println("Pressed J");
+			OutlandMod.network.sendToServer(new PacketHelloWorld("I sent a packet!"));
 		}
 	}
 	
@@ -56,28 +63,34 @@ public class EventHandler
 	public static void onLastRenderTick(RenderWorldLastEvent _event)
 	{
 		//	Checking if the 3D render part of the talent screen is active, and tells it do do its render stuff.
+		//	TODO: Commenting this out, since i will be using a 2d gui as of now,
+		/*
 		if(RenderTalentScreen.currentRenderer != null)
 		{
 			RenderTalentScreen.currentRenderer.OnRenderTick(_event.getPartialTicks());
 		}
+		*/
 	}
 	
 	@SubscribeEvent
 	public static void onGameOverlayRender(RenderGameOverlayEvent _event)
 	{
-		
+			/*
 			if(RenderTalentScreen.currentRenderer != null)
 			{
 				_event.setCanceled(true);
 			}
+			*/
 	}
 	
 	@SubscribeEvent
 	public static void onRenderPlayerHand(RenderHandEvent _event)
 	{
+			/*
 			if(RenderTalentScreen.currentRenderer != null)
 			{
 				_event.setCanceled(true);
 			}
+			*/
 	}
 }

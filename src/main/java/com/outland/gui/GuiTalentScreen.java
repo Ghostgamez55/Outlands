@@ -26,6 +26,7 @@ import net.minecraft.util.ResourceLocation;
  * @author Xcisso
  *
  *	This Gui class handles the input from the player, and sends info to the 3d renderer.
+ *	Please do not touch if you dont know exactly what you are doing :D
  */
 public class GuiTalentScreen extends GuiScreen
 {
@@ -58,9 +59,11 @@ public class GuiTalentScreen extends GuiScreen
 	@Override
 	public void initGui()
     {
+		/*
 		if(RenderTalentScreen.currentRenderer != null)
 			System.out.println("Did not properly close the renderer.");
 		new RenderTalentScreen(this, mc, rm, tessellator, vertexBuffer, fr);
+		*/
     }
 	
 	@Override
@@ -117,9 +120,9 @@ public class GuiTalentScreen extends GuiScreen
 	@Override
 	public void onGuiClosed()
     {
-		RenderTalentScreen.currentRenderer.OnGuiDisable();
+		//RenderTalentScreen.currentRenderer.OnGuiDisable();
 		
-		System.out.println("3D renderer is destroyed.");
+		//System.out.println("3D renderer is destroyed.");
     }
 	
 	/**

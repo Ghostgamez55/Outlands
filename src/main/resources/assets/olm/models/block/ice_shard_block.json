@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "olm:blocks/ice_shard_block"
+  }
+}

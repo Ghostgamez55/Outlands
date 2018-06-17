@@ -179,6 +179,7 @@ public class OutlandMod
 		
 		//	And another block example with a custom block class.
 		public static Block testBlock_02 = new BlockTestBlock("testblockinterract", Material.CLAY);
+		public static Block ice_brick = new IceBrick("ice_brick", Material.ROCK);
 	 
 	 /**
 	 * 	This method creates all the items.

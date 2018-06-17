@@ -14,6 +14,10 @@ item.gold_coin.name=Gold Coin
 
 tile.testblock.name=Test Block
 tile.testblockinterract.name=Test Block Interact
+tile.ice_brick.name=Ice Bricks
+tile.ice_brick_cracked.name=Cracked Ice Bricks
+tile.ice_shard_block.name=Ice Shard Block
+tile.ice_stone.name=Ice Stone
 
 //Armor
 

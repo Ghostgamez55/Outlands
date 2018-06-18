@@ -10,7 +10,9 @@ import com.outland.Items.ItemArmorBase;
 import com.outland.Items.ItemBase;
 import com.outland.handlers.GuiHandler;
 import com.outland.handlers.KeyHandler;
+import com.outland.packets.PacketHelloWorld;
 import com.outland.proxy.CommonProxy;
+import com.outland.utils.DataManager;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -33,6 +35,9 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLLoadEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = OutlandMod.MOD_ID, name = OutlandMod.MOD_NAME, version = OutlandMod.MOD_VERSION)
 public class OutlandMod 
@@ -69,6 +74,8 @@ public class OutlandMod
 	 */
 	private KeyHandler keyHandler;
 	
+	
+	public static SimpleNetworkWrapper network;
 
 	
 //	Creative Tabs
@@ -89,14 +96,11 @@ public class OutlandMod
 		 
 		 //	Then we get a reference to the current instance of Minecraft.
 		 //	This is for easy reference to other classes in this mod.
+		 
 		 mc = Minecraft.getMinecraft();
 		 
 		 keyHandler = new KeyHandler();
 		 
-		 for(int i = 0; i < 5; i++)
-		 {
-			 System.out.println("Initialized the mod!");
-		 }
 	 }
 
 	 
@@ -107,6 +111,11 @@ public class OutlandMod
 		 System.out.println(_event.toString());
 		 
 		 CreateItems();
+		 
+		 //	Network stuff
+		 network = NetworkRegistry.INSTANCE.newSimpleChannel("outlandmod_channel");
+		 
+		 network.registerMessage(PacketHelloWorld.Handler.class, PacketHelloWorld.class, 0, Side.SERVER);
 		 
 	 }
 

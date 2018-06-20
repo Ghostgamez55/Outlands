@@ -12,12 +12,18 @@ public class TalentBase
 	String talentName = "";
 	String talentDescription = "";
 	String talentIconName = "";
+	int numberOfPoints = 0;
+	int requiredLevel = 0;
 	
 	ResourceLocation textureLocation;
 	
-	public TalentBase(int _id, String _name, String _desc, String _icon)
+	public TalentBase(int _id, String _name, String _desc, int _maxPoints, int _reqLevel)
 	{
-		
+		talentID = _id;
+		talentName = _name;
+		talentDescription = _desc;
+		numberOfPoints = _maxPoints;
+		requiredLevel = _reqLevel;
 	}
 	
 	private ResourceLocation createResourceLocForTalent()

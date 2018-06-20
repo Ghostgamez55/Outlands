@@ -1,6 +1,7 @@
 package com.outland.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 
@@ -32,6 +33,8 @@ import net.minecraft.util.ResourceLocation;
  */
 public class GuiTalentScreen extends GuiScreen
 {
+	public static GuiTalentScreen instance;
+	
 	Minecraft mc;
 	RenderManager rm;
 	Tessellator tessellator;
@@ -42,10 +45,7 @@ public class GuiTalentScreen extends GuiScreen
 	int centerY = 0;
 	
 	ResourceLocation backGroundImage = new ResourceLocation("olm:textures/gui/talentscreen/background.png");
-	ResourceLocation[] talenPageTexture = new ResourceLocation[]{
-			new ResourceLocation("olm:textures/gui/talentscreen/talentpage_mining.png"),
-			new ResourceLocation("")
-			};
+	
 	
 	
 	GuiTalentState guiState = GuiTalentState.Idle;
@@ -53,20 +53,39 @@ public class GuiTalentScreen extends GuiScreen
 	Vector3 guiPosition = new Vector3(0, 0);
 	int displayPage = 0;
 	int pageCount = 3;
-	int pageWidth = 256;
+	public int pageWidth = 256;
 	float scrollSpeed = 25f;
 	
-	GuiButton testButton;
-	
+	/*
+	 * 	Talent pages
+	 */
+	GuiTalentPageBase[] talentPages = new GuiTalentPageBase[3];
+	GuiTalentPageBase pageMining = new GuiTalentPageMining(0, "Mining");
+	GuiTalentPageBase pageArchery = new GuiTalentPageMining(1, "Mining");
+	GuiTalentPageBase pageSwords = new GuiTalentPageMining(2, "Mining");
 	
 	EntityPlayerSP player;
 	
 	public int mouseX = 0, mouseY = 0;
 	public double mouseXP = 0, mouseYP = 0;
 	
+	/*
+	 * Footer variables
+	 */
+	int footerPositionY = 30;
+	int footerBackButtonHeight = 20;
+	int footerBackButtonWidth = 45;
+	int footerBackButtonXOffset = 55;
+	
+	/*
+	 * Talent button stuff.
+	 */
+	int talentButtonSize = 25;//Talent buttons will be square, so same height and width.
+	ArrayList<GuiButtonTalent> talentbuttonList = new ArrayList<GuiButtonTalent>();	
 	
 	public GuiTalentScreen()
 	{
+		instance = this;
 		mc = OutlandMod.mc;
 		rm = mc.getRenderManager();
 		tessellator = Tessellator.getInstance();
@@ -74,6 +93,11 @@ public class GuiTalentScreen extends GuiScreen
 		fr = mc.fontRenderer;
 		
 		player = mc.player;
+		
+
+		talentPages[0] = pageMining;
+		talentPages[1] = pageArchery;
+		talentPages[2] = pageSwords;
 		
 	}
 	
@@ -126,10 +150,13 @@ public class GuiTalentScreen extends GuiScreen
 		
 		
 		this.drawString(fr, this.guiPosition.toString(), 200, 55, 0xFFCC66);
+		
+		for(int i = 0; i < this.pageCount; i++)
+		{
+			this.talentPages[i].UpdateButtonList((int)this.guiPosition.X);
+			DrawTalentPageTexture(i);
+		}
 
-		DrawTalentpageMining(0);
-		DrawTalentpageMining(1);
-		DrawTalentpageMining(2);
 		
 		super.drawScreen(_x, _y, _f);
 	}
@@ -169,14 +196,53 @@ public class GuiTalentScreen extends GuiScreen
 		System.out.println("Update Buttons");
 		this.buttonList.clear();
 		
-		GuiButton buttonMoveRight = new GuiButton(0, 150, 100, 25, 25, ">");
+		/*
+		 * Create the footer buttons
+		 */
+		GuiButton buttonMoveRight = new GuiButton(0, 
+				this.centerX + this.footerBackButtonXOffset, this.height - this.footerPositionY, 
+				this.footerBackButtonWidth, this.footerBackButtonHeight, 
+				">");
 		buttonMoveRight.visible = true;
 		
-		GuiButton buttonMoveLeft = new GuiButton(1, 50, 100, 25, 25, "<");
+		GuiButton buttonMoveLeft = new GuiButton(1, 
+				this.centerX - this.footerBackButtonXOffset - this.footerBackButtonWidth, 
+				this.height - this.footerPositionY, this.footerBackButtonWidth, this.footerBackButtonHeight, 
+				"<");
 		buttonMoveRight.visible = true;
-		
+
 		this.buttonList.add(buttonMoveRight);
 		this.buttonList.add(buttonMoveLeft);
+		
+		
+		/*
+		 * Create the talent buttons
+		 */
+		/*
+		for(int i = 0; i < this.talentPages.length; i++)
+		{
+			GuiButtonTalent[] tempArray = this.talentPages[i].CreateButtons();
+			
+			for(int k = 0; k < tempArray.length; k++)
+			{
+				this.buttonList.add(tempArray[k]);
+			}
+		}
+		*/
+		GuiTalentPageBase var = this.talentPages[this.displayPage];
+
+		int pageOriginX = this.centerX - (pageWidth / 2);
+		int pageOriginY = this.centerY - (pageWidth / 2);
+		
+		GuiButtonTalent[] tempArray = var.CreateButtons(pageOriginX, pageOriginY);
+		
+
+		
+		for(int k = 0; k < tempArray.length; k++)
+		{
+			this.buttonList.add(tempArray[k]);
+		}
+
 	}
 	
 	@Override
@@ -193,18 +259,20 @@ public class GuiTalentScreen extends GuiScreen
 				
 				guiState = GuiTalentState.MovingRight;
 				this.displayPage++;
-				
-				break;
+				this.CreateButtons();
+				return;
 			case 1:
 				if(this.displayPage <= 0)
 					break;
 				
 				guiState = GuiTalentState.MovingLeft;
 				this.displayPage--;
-				break;
-			default:
+				this.CreateButtons();
 				return;
 		}
+		
+		
+		return;
     }
 
 	
@@ -258,15 +326,18 @@ public class GuiTalentScreen extends GuiScreen
 	/*
 	 * This is where we draw the different pages
 	 */
-	void DrawTalentpageMining(int _id)
+	void DrawTalentPageTexture(int _id)
 	{
+		GuiTalentPageBase var = this.talentPages[_id];
+		
 		int pageOriginX = this.centerX - (pageWidth / 2);
 		int pageOriginY = this.centerY - (pageWidth / 2);
 		
 		pageOriginX += _id*pageWidth;
 		pageOriginX += this.guiPosition.X;
 		
-		this.mc.getTextureManager().bindTexture(this.talenPageTexture[0]);
+		
+		this.mc.getTextureManager().bindTexture(var.GetPageTexture());
 		this.drawTexturedModalRect(pageOriginX, pageOriginY, 0, 0, 256, 256);
 	}
 	

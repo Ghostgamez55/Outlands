@@ -61,8 +61,8 @@ public class GuiTalentScreen extends GuiScreen
 	 */
 	GuiTalentPageBase[] talentPages = new GuiTalentPageBase[3];
 	GuiTalentPageBase pageMining = new GuiTalentPageMining(0, "Mining");
-	GuiTalentPageBase pageArchery = new GuiTalentPageMining(1, "Mining");
-	GuiTalentPageBase pageSwords = new GuiTalentPageMining(2, "Mining");
+	GuiTalentPageBase pageArchery = new GuiTalentPageMining(1, "Mining2");
+	GuiTalentPageBase pageSwords = new GuiTalentPageMining(2, "Mining3");
 	
 	EntityPlayerSP player;
 	
@@ -140,6 +140,7 @@ public class GuiTalentScreen extends GuiScreen
 		mouseXP = (double)this.mouseX / (double)this.width;
 		mouseYP = (double)this.mouseY / (double)this.height;
 		
+		/*
 		this.drawString(fr, "Debug:", 0, 0, 0xFFCC66);
 		
 		this.drawString(fr, "mouseX = " + mouseX + " % = " + mouseXP, 0, 10, 0xFFCC66);
@@ -150,12 +151,14 @@ public class GuiTalentScreen extends GuiScreen
 		
 		
 		this.drawString(fr, this.guiPosition.toString(), 200, 55, 0xFFCC66);
-		
+		*/
 		for(int i = 0; i < this.pageCount; i++)
 		{
 			this.talentPages[i].UpdateButtonList((int)this.guiPosition.X);
 			DrawTalentPageTexture(i);
 		}
+		
+		this.drawCenteredString(fr, this.talentPages[this.displayPage].pageName, width / 2, height - 25, 0xe6e6e6);
 
 		
 		super.drawScreen(_x, _y, _f);
@@ -338,7 +341,7 @@ public class GuiTalentScreen extends GuiScreen
 		
 		
 		this.mc.getTextureManager().bindTexture(var.GetPageTexture());
-		this.drawTexturedModalRect(pageOriginX, pageOriginY, 0, 0, 256, 256);
+		this.drawTexturedModalRect(pageOriginX, pageOriginY, 0, 0, 256, 200);
 	}
 	
 	

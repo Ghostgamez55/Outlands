@@ -27,17 +27,17 @@ public class GuiTalentPageMining extends GuiTalentPageBase
 		
 		GuiButtonTalent[] tempButtons = new GuiButtonTalent[3];
 		
-		nextButtonX = 125;
-		nextButtonY = 233;
-		tempButtons[0] = new GuiButtonTalent(4, pagePosX + nextButtonX - 15, pagePosY + nextButtonY - 15, this.pageName + " " + this.pageID);
+		nextButtonX = 128;
+		nextButtonY = 195;
+		tempButtons[0] = new GuiButtonTalent(4, pagePosX + nextButtonX - 15, pagePosY + nextButtonY - 15, this.pageName + " " + this.pageID, 0);
 
-		nextButtonX = 127;
-		nextButtonY = 149;
-		tempButtons[1] = new GuiButtonTalent(4, pagePosX + nextButtonX - 15, pagePosY + nextButtonY - 15, this.pageName + " " + this.pageID);
+		nextButtonX = 128;
+		nextButtonY = 150;
+		tempButtons[1] = new GuiButtonTalent(4, pagePosX + nextButtonX - 15, pagePosY + nextButtonY - 15, this.pageName + " " + this.pageID, 1);
 
-		nextButtonX = 125;
+		nextButtonX = 128;
 		nextButtonY = 29;
-		tempButtons[2] = new GuiButtonTalent(4, pagePosX + nextButtonX - 15, pagePosY + nextButtonY - 15, this.pageName + " " + this.pageID);
+		tempButtons[2] = new GuiButtonTalent(4, pagePosX + nextButtonX - 15, pagePosY + nextButtonY - 15, this.pageName + " " + this.pageID, 2);
 		
 		
 		this.talentButtonArray = tempButtons;

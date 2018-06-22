@@ -1,5 +1,7 @@
 package com.outland.talents;
 
+
+
 /**
  * @author Xcisso
  * 	This class handles the talents. All the talents available are in the talentList.
@@ -11,19 +13,14 @@ public class TalentManager
 	/**
 	 * This is the list of the existing talents. The index in the array, represents our own ID.
 	 */
-	TalentBase[] talentList = new TalentBase[16];
+	static TalentBase[] talentList = new TalentBase[16];
 	
 	
-	
-	public TalentManager()
+	public static void CreateTalents() 
 	{
-		CreateTalents();
-	}
-
-
-
-	private void CreateTalents() 
-	{
+		//	The talent IDs as well as the index it is in the list has to match, AND it has to be manually set.
+		//	This is because we want the spell IDs to match our google document..
+		
 		/*
 		 * MINING TALENTS
 		 */
@@ -51,8 +48,58 @@ public class TalentManager
 		
 	}
 	
-	public TalentBase getTalentWithID(int _id)
+	/**
+	 * Gets a talent with a specified ID.
+	 * @param _id The id of the talent you want to get.
+	 * @return Returns the talent with the passed id.
+	 */
+	public static TalentBase getTalentWithID(int _id)
 	{
-		return this.talentList[_id];
+		return talentList[_id];
+	}
+	
+	/**
+	 * Gets a talent by name, if it exists. Return null if the name don't match.
+	 * Its a lot more efficient to get talents by ID. Only use this if you REALLY need to.
+	 * @param _name The name of the talent you want to get.
+	 * @return Returns the talent with the passed name, if it cant find it, returns null.
+	 */
+	public static TalentBase getTalentWithName(String _name)
+	{
+		String query = _name.toLowerCase();
+		TalentBase returnTalent;
+		
+		for(int i = 0; i < talentList.length; i++)
+		{
+			
+			if(talentList[i] != null)
+			{
+				returnTalent = talentList[i];
+				if(query.equalsIgnoreCase(returnTalent.talentName))
+					return returnTalent;
+			}
+		}
+		/*
+		 * If we reach this, it means that the name did not match any talents in the talent list..
+		 */
+		return null;
+	}
+	
+	
+	
+	/**
+	 * 	This function is used to convert the buttonTalent button ID to a spell ID
+	 */
+	public static int GetTalentIDFromButtonID(int _buttonID)
+	{
+		return 0;
+	}
+	
+	/**
+	 * 	This function returns a custom button id from the guipage its on, and the spell id you want to display.
+	 */
+	public static int GetButtonIDFromTalentAndPageID(int _pageID, int _talentID)
+	{
+		return 0;
 	}
 }

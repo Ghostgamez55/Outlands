@@ -11,6 +11,7 @@ public class TalentBase
 	int talentID = 0;
 	String talentName = "";
 	String talentDescription = "";
+	@Deprecated
 	String talentIconName = "";
 	int numberOfPoints = 0;
 	int requiredLevel = 0;
@@ -29,6 +30,26 @@ public class TalentBase
 	private ResourceLocation createResourceLocForTalent()
 	{
 		return new ResourceLocation("olm:textures/talenticons/" + talentIconName + ".png");
+	}
+	
+	public String GetName()
+	{
+		return talentName;
+	}
+	
+	public String GetDescription()
+	{
+		return this.talentDescription;
+	}
+	
+	public int GetMaxPoints()
+	{
+		return this.numberOfPoints;
+	}
+	
+	public int GetReqLevel()
+	{
+		return this.requiredLevel;
 	}
 	
 }

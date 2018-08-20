@@ -4,11 +4,10 @@ import com.outland.Blocks.BlockBase;
 import com.outland.Blocks.BlockTestBlock;
 import com.outland.Blocks.IceBrick;
 import com.outland.Blocks.IceBrickCracked;
+import com.outland.Blocks.IceObs;
+import com.outland.Blocks.IceSand;
 import com.outland.Blocks.IceShardBlock;
 import com.outland.Blocks.IceStone;
-//import com.outland.Blocks.IceBrickCracked;
-//import com.outland.Blocks.IceShardBlock;
-//import com.outland.Blocks.IceStone;
 import com.outland.Items.ItemArmorBase;
 import com.outland.Items.ItemBase;
 import com.outland.handlers.GuiHandler;
@@ -184,9 +183,8 @@ public class OutlandMod
 		public static Block ice_brick_cracked = new IceBrickCracked("ice_brick_cracked", Material.ROCK);
 		public static Block ice_shard_block = new IceShardBlock("ice_shard_block", Material.ROCK);
 		public static Block ice_stone = new IceStone("ice_stone", Material.ROCK);
-		//public static Block ice_brick_cracked = new IceBrickCracked("ice_brick_cracked", Material.ROCK);
-		//public static Block ice_shard_block = new IceShardBlock("ice_shard_block", Material.ROCK);
-		//public static Block ice_stone = new IceStone("ice_stone", Material.ROCK);
+		public static Block icy_sand = new IceSand("icy_sand", Material.SAND);
+		public static Block icy_obsidian = new IceObs("icy_obsidian", Material.ROCK);
 		
 		//	And another block example with a custom block class.
 		public static Block testBlock_02 = new BlockTestBlock("testblockinterract", Material.CLAY);

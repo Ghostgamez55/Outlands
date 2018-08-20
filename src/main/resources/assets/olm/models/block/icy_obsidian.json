@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "olm:blocks/icy_obsidian"
+  }
+}

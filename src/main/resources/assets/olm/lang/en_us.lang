@@ -18,6 +18,8 @@ tile.ice_brick.name=Ice Bricks
 tile.ice_brick_cracked.name=Cracked Ice Bricks
 tile.ice_shard_block.name=Ice Shard Block
 tile.ice_stone.name=Ice Stone
+tile.icy_sand.name=Icy Sand
+tile.icy_obsidian.name=Icy Obsidian
 
 //Armor
 
